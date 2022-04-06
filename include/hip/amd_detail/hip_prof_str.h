@@ -390,6 +390,8 @@ enum hip_api_id_t {
   HIP_API_ID_hipTexRefSetMipmapLevelBias = HIP_API_ID_NONE,
   HIP_API_ID_hipUnbindTexture = HIP_API_ID_NONE,
   HIP_API_ID_ihipModuleLaunchKernel = HIP_API_ID_NONE,
+  HIP_API_ID_hipExtStreamStartProfiler = HIP_API_ID_NONE,
+  HIP_API_ID_hipExtStreamEndProfiler = HIP_API_ID_NONE,
 };
 
 // Return the HIP API string for a given callback ID
@@ -5080,6 +5082,10 @@ typedef struct hip_api_data_s {
 #define INIT_hipUnbindTexture_CB_ARGS_DATA(cb_data) {};
 // ihipModuleLaunchKernel()
 #define INIT_ihipModuleLaunchKernel_CB_ARGS_DATA(cb_data) {};
+// hipExtStreamStartProfiler()
+#define INIT_hipExtStreamStartProfiler_CB_ARGS_DATA(cb_data) {};
+// hipExtStreamEndProfiler()
+#define INIT_hipExtStreamEndProfiler_CB_ARGS_DATA(cb_data) {};
 
 #define INIT_NONE_CB_ARGS_DATA(cb_data) {};
 

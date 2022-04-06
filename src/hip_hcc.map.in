@@ -271,6 +271,8 @@ global:
     hipEnableActivityCallback*;
     hipGetCmdName*;
     hipExtStreamCreateWithCUMask;
+    hipExtStreamStartProfiler;
+    hipExtStreamEndProfiler;
     hipStreamGetPriority;
     hipMemcpy2DFromArray;
     hipMemcpy2DFromArrayAsync;

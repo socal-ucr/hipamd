@@ -644,6 +644,32 @@ hipError_t hipExtStreamCreateWithCUMask(hipStream_t* stream, uint32_t cuMaskSize
   HIP_RETURN(ihipStreamCreate(stream, hipStreamDefault, hip::Stream::Priority::Normal, cuMaskv), *stream);
 }
 
+//=================================================================================================
+hipError_t hipExtStreamStartProfiler(hipStream_t stream){
+  HIP_INIT_API(hipExtStreamStartProfiler,stream);  
+    
+  if (!hip::isValid(stream)) {
+    return HIP_RETURN(hipErrorContextIsDestroyed);
+  }
+
+  hip::getQueue(stream)->startProfiler();
+
+  HIP_RETURN(hipSuccess);
+}
+//=================================================================================================
+hipError_t hipExtStreamEndProfiler(hipStream_t stream,uint64_t* time){
+  HIP_INIT_API(hipExtStreamStartProfiler,stream);
+
+  if (!hip::isValid(stream)) {
+    return HIP_RETURN(hipErrorContextIsDestroyed);
+  }
+
+  hip::getQueue(stream)->endProfiler(time);
+
+  HIP_RETURN(hipSuccess);
+}
+
+
 // ================================================================================================
 hipError_t hipStreamGetPriority_common(hipStream_t stream, int* priority) {
   if ((priority != nullptr) && (stream == nullptr)) {
