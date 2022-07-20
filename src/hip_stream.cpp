@@ -645,14 +645,14 @@ hipError_t hipExtStreamCreateWithCUMask(hipStream_t* stream, uint32_t cuMaskSize
 }
 
 //=================================================================================================
-hipError_t hipExtStreamStartProfiler(hipStream_t stream){
-  HIP_INIT_API(hipExtStreamStartProfiler,stream);  
+hipError_t hipExtStreamStartProfiler(hipStream_t stream,uint32_t numCUs){
+  HIP_INIT_API(hipExtStreamStartProfiler,stream,numCUs);
     
   if (!hip::isValid(stream)) {
     return HIP_RETURN(hipErrorContextIsDestroyed);
   }
 
-  hip::getQueue(stream)->startProfiler();
+  hip::getQueue(stream)->startProfiler(numCUs);
 
   HIP_RETURN(hipSuccess);
 }
