@@ -658,13 +658,49 @@ hipError_t hipExtStreamStartProfiler(hipStream_t stream,uint32_t numCUs){
 }
 //=================================================================================================
 hipError_t hipExtStreamEndProfiler(hipStream_t stream,uint64_t* time){
-  HIP_INIT_API(hipExtStreamStartProfiler,stream);
+  HIP_INIT_API(hipExtStreamEndProfiler,stream);
 
   if (!hip::isValid(stream)) {
     return HIP_RETURN(hipErrorContextIsDestroyed);
   }
 
   hip::getQueue(stream)->endProfiler(time);
+
+  HIP_RETURN(hipSuccess);
+}
+// ================================================================================================
+hipError_t hipExtStreamSetCUMask(hipStream_t stream, uint32_t cuMaskSize,
+                                 uint32_t* cuMask) {
+  HIP_INIT_API(hipExtStreamSetCUMask, stream, cuMaskSize, cuMask);
+
+  if (stream == nullptr) {
+    HIP_RETURN(hipErrorInvalidHandle);
+  }
+  if (cuMaskSize == 0 || cuMask == nullptr) {
+    HIP_RETURN(hipErrorInvalidValue);
+  }
+  if (!hip::isValid(stream)) {
+    return HIP_RETURN(hipErrorContextIsDestroyed);
+  }
+
+  hip::getQueue(stream)->setCUMask(cuMaskSize, cuMask);
+  HIP_RETURN(hipSuccess);
+}
+// ================================================================================================
+hipError_t hipExtStreamAcquireCUMask(hipStream_t stream, uint32_t num_cus) {
+  HIP_INIT_API(hipExtStreamAcquireCUMask, stream, num_cus);
+
+  if (stream == nullptr) {
+    HIP_RETURN(hipErrorInvalidHandle);
+  }
+  if (num_cus == 0) {
+    HIP_RETURN(hipErrorInvalidValue);
+  }
+  if (!hip::isValid(stream)) {
+    return HIP_RETURN(hipErrorContextIsDestroyed);
+  }
+
+  hip::getQueue(stream)->acquireCUMask(num_cus);
 
   HIP_RETURN(hipSuccess);
 }

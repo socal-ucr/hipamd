@@ -273,6 +273,8 @@ global:
     hipExtStreamCreateWithCUMask;
     hipExtStreamStartProfiler;
     hipExtStreamEndProfiler;
+    hipExtStreamSetCUMask;
+    hipExtStreamAcquireCUMask;
     hipStreamGetPriority;
     hipMemcpy2DFromArray;
     hipMemcpy2DFromArrayAsync;
