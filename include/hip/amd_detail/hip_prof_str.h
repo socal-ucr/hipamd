@@ -394,6 +394,7 @@ enum hip_api_id_t {
   HIP_API_ID_hipExtStreamEndProfiler = HIP_API_ID_NONE,
   HIP_API_ID_hipExtStreamSetCUMask = HIP_API_ID_NONE,
   HIP_API_ID_hipExtStreamAcquireCUMask = HIP_API_ID_NONE,
+  HIP_API_ID_hipExtStreamReleaseCUMask = HIP_API_ID_NONE,
 };
 
 // Return the HIP API string for a given callback ID
@@ -5092,6 +5093,8 @@ typedef struct hip_api_data_s {
 #define INIT_hipExtStreamSetCUMask_CB_ARGS_DATA(cb_data) {};
 // hipExtStreamAcquireCUMask()
 #define INIT_hipExtStreamAcquireCUMask_CB_ARGS_DATA(cb_data) {};
+// hipExtStreamReleaseCUMask()
+#define INIT_hipExtStreamReleaseCUMask_CB_ARGS_DATA(cb_data) {};
 
 #define INIT_NONE_CB_ARGS_DATA(cb_data) {};
 

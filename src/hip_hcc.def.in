@@ -285,6 +285,7 @@ hipExtStreamStartProfiler
 hipExtStreamEndProfiler
 hipExtStreamSetCUMask
 hipExtStreamAcquireCUMask
+hipExtStreamReleaseCUMask
 hipStreamGetPriority
 hipMemcpy2DFromArray
 hipMemcpy2DFromArrayAsync

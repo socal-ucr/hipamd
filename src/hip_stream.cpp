@@ -704,6 +704,21 @@ hipError_t hipExtStreamAcquireCUMask(hipStream_t stream, uint32_t num_cus) {
 
   HIP_RETURN(hipSuccess);
 }
+// ================================================================================================
+hipError_t hipExtStreamReleaseCUMask(hipStream_t stream) {
+  HIP_INIT_API(hipExtStreamReleaseCUMask, stream);
+
+  if (stream == nullptr) {
+    HIP_RETURN(hipErrorInvalidHandle);
+  }
+  if (!hip::isValid(stream)) {
+    return HIP_RETURN(hipErrorContextIsDestroyed);
+  }
+
+  hip::getQueue(stream)->releaseCUMask();
+
+  HIP_RETURN(hipSuccess);
+}
 
 
 // ================================================================================================
